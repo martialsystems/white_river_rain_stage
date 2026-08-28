@@ -54,6 +54,7 @@ def laws() -> list[dict[str, Any]]:
                 "attrib_as_wet_mask": False,
                 "attrib_as_firm": False,
                 "flood_warning": False,
+                "attrib_as_runoff": False,
                 "n_figures": 2,
             },
             "allow_decisions": ["allow"],

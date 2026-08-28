@@ -5,7 +5,7 @@ from typing import Any
 
 from rainforge.graphs._common import binary_graph
 
-_FLAGS = ("attrib_as_wet_mask", "attrib_as_firm", "flood_warning")
+_FLAGS = ("attrib_as_wet_mask", "attrib_as_firm", "flood_warning", "attrib_as_runoff")
 
 
 def _evaluate(state: dict[str, Any]) -> dict[str, Any]:

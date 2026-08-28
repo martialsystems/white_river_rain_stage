@@ -18,6 +18,8 @@ _BANS: tuple[tuple[str, re.Pattern[str]], ...] = (
     ("hand_firm", re.compile(r"\bHAND (?:mask|wet(?: area)?|bathtub) is (?:a |the )?FIRM\b", re.I)),
     ("attrib_wet", re.compile(r"\battribution (?:map|layer) is (?:a |the )?(?:wet mask|inundation)\b", re.I)),
     ("attrib_firm", re.compile(r"\battribution (?:map|layer) is (?:a |the )?FIRM\b", re.I)),
+    ("attrib_runoff", re.compile(r"\battribution (?:map|layer|grid) is (?:a |the )?(?:runoff map|source area)\b", re.I)),
+    ("fixture_rescues", re.compile(r"\bfixture (?:skill|RMSE) rescues live\b", re.I)),
     ("flood_warning", re.compile(r"\bflood warning\b|\bemergency forecast\b", re.I)),
     ("flood_ai", re.compile(r"\bflood AI\b", re.I)),
     ("train_fema", re.compile(r"\btrain(?:ed|ing)? (?:a )?(?:flood )?model on FEMA\b", re.I)),

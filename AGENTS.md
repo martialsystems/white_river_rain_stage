@@ -2,7 +2,11 @@
 
 Public GitHub. MIT. Question: Can Stage IV rain on the 1,219 mi² Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?
 
+Live answer at `e41fd69`: no, not on this sample, not with this Ridge. Persistence is the bar. Fixture skill does not rescue live. Figure 2 is where Ridge looks, not a runoff map.
+
 This tree does not read `p_sfha`. Do not edit https://github.com/martialsystems/indiana_flood_completion or https://github.com/martialsystems/white_river_stage_inundation. Do not paint a wet mask. Do not start hourly MRMS as v1, QPF, WTP/substations, or a third figure.
+
+Do not start the next rain tree from this snapshot. If one is asked: longer years plus a routed or lagged basin-mean rain term, not more pixels, not a wet mask.
 
 Live Stage IV / NLDI / NWIS that 404s or is empty is a stop. Do not substitute Daymet or PRISM. Basin is NLDI 03351000, not HUC-8, not the 5 km HAND window.
 

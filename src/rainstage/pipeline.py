@@ -68,7 +68,7 @@ def _run(
         future_rain=bool(fit["future_rain"]),
         thread_id="split",
     )
-    paths = write_two(log_dir, fit=fit)
+    paths = write_two(log_dir, fit=fit, live=not fixture)
     require_claims(n_figures=len(paths), thread_id="claims")
     log_dir.mkdir(parents=True, exist_ok=True)
     report: dict[str, Any] = {

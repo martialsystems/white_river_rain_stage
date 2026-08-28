@@ -2,35 +2,53 @@
 
 Can Stage IV rain on the 1,219 mi² Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?
 
-This tree is hydrology ML at USGS **03351000** / NWS **NORI3**. The label is observed gage height (NWIS 00065; daily max of IV because DV 00065 is unpublished). Inputs are NCEP Stage IV daily rainfall clipped to the NLDI basin for that gage (published **1,219 mi²**, live geodesic **1,227.28 mi²**, 178 HRAP cells) and last-day discharge (NWIS 00060, lag 1). The map is which upstream Stage IV pixels the model uses (Ridge |coefficient|). That map is attribution, not a wet mask. This tree does not read `p_sfha`.
+On this live sample, with this Ridge: no.
+
+Persistence wins (RMSE 1.03 ft). Rain-sum plus yesterday's Q is second (2.58). The 178-pixel Ridge is third on RMSE (3.19) and ties the simple rain model on MAE (0.84 vs 0.83). With 89 summer training days there are not enough events for Stage IV pixels to beat "today looks like yesterday," and a linear rain sum overshoots the 15 Aug crest.
+
+The fixture beating persistence only shows the synthetic hotspot is recoverable. It does not rescue live skill.
+
+Live negative result is commit `e41fd69`. This tree does not read `p_sfha`.
 
 Sibling HAND paint: https://github.com/martialsystems/white_river_stage_inundation  
 Sibling map-completion: https://github.com/martialsystems/indiana_flood_completion
 
-Nowcast, not QPF: rain that already fell. Daily timestep. Train through water year 2024 (through 2024-09-30). Hold out 2025 to 2026. August 2026 is a named confirmation event and is not in train. Live v1 windows are summers: 2024-07-01 to 2024-09-30 (train), 2025-07-01 to 2025-09-30 and 2026-07-01 to 2026-08-20 (holdout). 235 Stage IV days, 0 skipped.
-
 ![Figure 1. Holdout hydrograph](logs/nora_live/hydrograph.png)
 
-Figure 1. Live holdout: observed stage, persistence, and model A (Ridge on basin-mean rain lags 0 to 3, last-day Q, day-of-year). Lines at 11.00 ft and 21.18 ft. August 2026 shaded. Persistence RMSE 1.03 ft. Model A 3.19 ft: it overshoots the 2026-08-15 crest. Yesterday's stage is the better nowcast on this sample.
+Figure 1. Live holdout at USGS **03351000**: observed stage, persistence, and the 7-feature Ridge (basin-mean rain lags 0 to 3, last-day Q, day-of-year). Lines at 11.00 ft and 21.18 ft. August 2026 shaded. Persistence is the bar.
 
 ![Figure 2. Attribution](logs/nora_live/attribution.png)
 
-Figure 2. Live Stage IV pixels on the 1,219 mi² drainage, colored by holdout |Ridge coefficient|. Upstream rain the model uses, not a wet mask.
+Figure 2. Where Ridge looks, not source areas for the flood. A model that loses to persistence should not be read as a runoff map.
+
+## Why this was expected, and still worth shipping
+
+178 cells on 89 days is a wide, short matrix. The two-feature rain-sum model beating Ridge is the tell.
+
+Daily Stage IV versus daily-max stage ignores travel time on 1,227 mi².
+
+Summers plus one huge crest in holdout will punish any linear rain term.
+
+NLDI 1,227 versus USGS 1,219 mi² is close enough with the basin sha pinned. DV 00065 empty, then IV daily max, was the right fallback. Siblings untouched.
 
 ## Live skill (holdout)
 
-From `logs/nora_live/stage_c_report.json`. RMSE and MAE in feet. Train n=89 (WY2024 summer). Holdout n=143. August 2026 not in train. Native Stage IV units: inches, stored as mm. Label: IV daily max.
+Locked from `e41fd69` / `logs/nora_live/stage_c_report.json`. RMSE and MAE in feet. Train n=89 (WY2024 summer). Holdout n=143. August 2026 not in train. Native Stage IV units: inches, stored as mm. Label: IV daily max. 235 Stage IV days, 178 HRAP cells.
 
 | Model | RMSE (ft) | MAE (ft) |
 |-------|----------:|---------:|
 | Persistence | 1.03 | 0.50 |
 | Climatology | 3.42 | 1.49 |
 | Rain-sum + Q_lag | 2.58 | 0.83 |
-| Model A (Ridge) | 3.19 | 0.84 |
+| 178-pixel Ridge | 3.19 | 0.84 |
+
+## Next tree, if any
+
+Longer years plus a routed or lagged basin-mean rain term. Not more pixels, and not a wet mask. Persistence stays the bar. Do not start that tree from this commit.
 
 ## Stage 0
 
-Synthetic 8×10 basin so CI trains without NOAA. Fixture skill (A RMSE 0.37 ft vs persistence 0.54 ft) is in `logs/stage0_fixture/stage0_report.json`. Tests require A to beat persistence on that synthetic series and the hotspot |coef| to exceed the other cells.
+Synthetic 8×10 basin so CI trains without NOAA. Fixture skill (A RMSE 0.37 ft vs persistence 0.54 ft) is an oracle that the pipeline can recover a planted hotspot. It is not live skill.
 
 ```bash
 python3.12 -m venv .venv

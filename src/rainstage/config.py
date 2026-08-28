@@ -29,6 +29,14 @@ LOCKED_NLDI_BASIN_SHA256 = "944566fd7828b63d4975dbeea69152c9c339ce11c71e668c0143
 LOCKED_NLDI_AREA_MI2 = 1227.28
 LOCKED_STAGEIV_CELLSIZE_M = 4762.5
 LOCKED_STAGEIV_CRS_TOKEN = "NOAA_HRAP_Grid"
+LOCKED_LIVE_COMMIT = "e41fd69602046683818dd33b28ddc07029d8c605"
+LIVE_ATTRIBUTION_SUBTITLE = (
+    "Where Ridge looks, not source areas for the flood. "
+    "A model that loses to persistence should not be read as a runoff map."
+)
+FIXTURE_ATTRIBUTION_SUBTITLE = (
+    "Fixture: which cells the synthetic Ridge uses. Does not rescue live skill."
+)
 NWIS_DV_URL = (
     "https://waterservices.usgs.gov/nwis/dv/?format=json&sites={site}"
     "&startDT={start}&endDT={end}&parameterCd={code}&siteStatus=all"

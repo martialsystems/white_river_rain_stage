@@ -17,6 +17,9 @@ def test_readme_opens_with_the_question() -> None:
     assert "p_sfha" in text
     assert "white_river_stage_inundation" in text
     assert "indiana_flood_completion" in text
+    assert "e41fd69" in text
+    assert "should not be read as a runoff map" in text
+    assert "does not rescue live skill" in text.lower()
     assert scan_text(text) == []
     assert "—" not in text
     assert "What it is not" not in text

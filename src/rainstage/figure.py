@@ -9,7 +9,14 @@ from typing import Any
 import numpy as np
 
 from rainstage.claims import require_clean
-from rainstage.config import CREST_STAGE_FT, FLOOD_STAGE_FT, GAGE_ID, MAX_FIGURES
+from rainstage.config import (
+    CREST_STAGE_FT,
+    FIXTURE_ATTRIBUTION_SUBTITLE,
+    FLOOD_STAGE_FT,
+    GAGE_ID,
+    LIVE_ATTRIBUTION_SUBTITLE,
+    MAX_FIGURES,
+)
 from rainstage.errors import FigureCapError
 
 
@@ -83,15 +90,61 @@ def write_attribution(dest: Path, *, fit: dict[str, Any], title: str, subtitle: 
     ax.set_xticks([])
     ax.set_yticks([])
     ax.set_title(title, fontsize=10)
-    fig.text(0.5, 0.03, subtitle, ha="center", fontsize=8)
-    fig.subplots_adjust(bottom=0.10, top=0.90)
+    lines = [ln.strip() for ln in subtitle.split(".") if ln.strip()]
+    if len(lines) >= 2:
+        fig.text(0.5, 0.045, lines[0] + ".", ha="center", fontsize=8)
+        fig.text(0.5, 0.018, ". ".join(lines[1:]) + ".", ha="center", fontsize=7.5)
+        fig.subplots_adjust(bottom=0.12, top=0.90)
+    else:
+        fig.text(0.5, 0.03, subtitle, ha="center", fontsize=8)
+        fig.subplots_adjust(bottom=0.10, top=0.90)
     dest.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(dest, dpi=130)
     plt.close(fig)
     return dest
 
 
-def write_two(log_dir: Path, *, fit: dict[str, Any]) -> list[Path]:
+def restamp_attribution_caption(path: Path, *, subtitle: str) -> Path:
+    """Replace the footer on an existing attribution PNG. Does not re-fit."""
+    require_clean(subtitle, source="fig2_sub")
+    import matplotlib
+
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+
+    img = np.asarray(plt.imread(path), dtype=float)
+    if img.max() > 1.0:
+        img = img / 255.0
+    rgb = img[..., :3] if img.ndim == 3 else img
+    ink = rgb.min(axis=2) if rgb.ndim == 3 else rgb
+    rows = np.where(ink < 0.97)[0]
+    cols = np.where(ink.min(axis=0) < 0.97)[0]
+    r0, r1 = int(rows[0]), int(rows[-1]) + 1
+    c0, c1 = int(cols[0]), int(cols[-1]) + 1
+    # Drop the old footer line; keep title, grid, colorbar.
+    r1 = r0 + int(0.90 * (r1 - r0))
+    crop = img[max(0, r0 - 8) : r1, max(0, c0 - 8) : min(img.shape[1], c1 + 8)]
+    fig, ax = plt.subplots(figsize=(6.4, 5.5))
+    ax.imshow(crop)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_title("")
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    lines = [ln.strip() for ln in subtitle.split(".") if ln.strip()]
+    if len(lines) >= 2:
+        fig.text(0.5, 0.045, lines[0] + ".", ha="center", fontsize=8)
+        fig.text(0.5, 0.018, ". ".join(lines[1:]) + ".", ha="center", fontsize=7.5)
+    else:
+        fig.text(0.5, 0.03, subtitle, ha="center", fontsize=8)
+    fig.subplots_adjust(bottom=0.12, top=0.99, left=0.01, right=0.99)
+    fig.savefig(path, dpi=130)
+    plt.close(fig)
+    return path
+
+
+def write_two(log_dir: Path, *, fit: dict[str, Any], live: bool = False) -> list[Path]:
+    sub = LIVE_ATTRIBUTION_SUBTITLE if live else FIXTURE_ATTRIBUTION_SUBTITLE
     paths = [
         write_hydrograph(
             log_dir / "hydrograph.png",
@@ -103,7 +156,7 @@ def write_two(log_dir: Path, *, fit: dict[str, Any]) -> list[Path]:
             log_dir / "attribution.png",
             fit=fit,
             title=f"{GAGE_ID} Stage IV pixels: holdout |coefficient|",
-            subtitle="Upstream rain the model uses, not a wet mask.",
+            subtitle=sub,
         ),
     ]
     _cap(len(paths))

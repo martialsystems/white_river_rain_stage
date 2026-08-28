@@ -81,6 +81,7 @@ def require_claims(**flags: Any) -> None:
         "attrib_as_wet_mask": False,
         "attrib_as_firm": False,
         "flood_warning": False,
+        "attrib_as_runoff": False,
         "n_figures": 2,
     }
     state.update(flags)

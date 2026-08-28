@@ -67,6 +67,8 @@ def test_claims_and_figure_cap() -> None:
         require_claims(n_figures=3, thread_id="t.c.fig")
     with pytest.raises(LawBlockedError):
         require_claims(attrib_as_wet_mask=True, thread_id="t.c.wet")
+    with pytest.raises(LawBlockedError):
+        require_claims(attrib_as_runoff=True, thread_id="t.c.runoff")
 
 
 def test_registry() -> None:
