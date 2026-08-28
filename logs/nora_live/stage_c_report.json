@@ -1,0 +1,71 @@
+{
+  "stage": "C",
+  "fixture": false,
+  "question": "Can Stage IV rain on the 1,219 mi\u00b2 Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?",
+  "gage_id": "03351000",
+  "crest_date": "2026-08-15",
+  "crest_stage_ft": 21.18,
+  "published_drainage_mi2": 1219.0,
+  "drainage_mi2": 1227.2814879341367,
+  "n_days": 235,
+  "n_cells": 178,
+  "n_train": 89,
+  "n_holdout": 143,
+  "rain_units": "mm",
+  "stage_units": "ft",
+  "q_units": "cfs",
+  "native_rain_units": "inches",
+  "basin_sha": "944566fd7828b63d4975dbeea69152c9c339ce11c71e668c01437d82f85f13a3",
+  "source": "stageiv",
+  "crs": "PROJCS[\"NOAA_HRAP_Grid\",GEOGCS[\"GCS_NOAA_HRAP\",DATUM[\"D_NOAA_HRAP\",SPHEROID[\"Sphere\",6371200,0]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",60],PARAMETER[\"central_meridian\",-105],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1],AXIS[\"Easting\",SOUTH],AXIS[\"Northing\",SOUTH]]",
+  "skill": {
+    "persistence": {
+      "rmse_ft": 1.0327145301095075,
+      "mae_ft": 0.49846153846153834
+    },
+    "climatology": {
+      "rmse_ft": 3.4155178793209675,
+      "mae_ft": 1.4938885833267856
+    },
+    "baseline": {
+      "rmse_ft": 2.5764184639665704,
+      "mae_ft": 0.8289975515470207
+    },
+    "model_a": {
+      "rmse_ft": 3.186977156128132,
+      "mae_ft": 0.8437930508155229,
+      "name": "Ridge"
+    }
+  },
+  "august_2026_in_train": false,
+  "random_split": false,
+  "future_rain": false,
+  "p_sfha_feature": false,
+  "p_sfha_label": false,
+  "figures": [
+    "hydrograph.png",
+    "attribution.png"
+  ],
+  "live": {
+    "basin": {
+      "gage_id": "03351000",
+      "source": "nldi",
+      "area_mi2": 1227.2814879341367,
+      "sha256": "944566fd7828b63d4975dbeea69152c9c339ce11c71e668c01437d82f85f13a3",
+      "n_features": 1
+    },
+    "n_requested": 235,
+    "n_stageiv": 235,
+    "n_skipped": 0,
+    "rain_units": "mm",
+    "stage_units": "ft",
+    "q_units": "cfs",
+    "native_rain_units": "inches",
+    "crs": "PROJCS[\"NOAA_HRAP_Grid\",GEOGCS[\"GCS_NOAA_HRAP\",DATUM[\"D_NOAA_HRAP\",SPHEROID[\"Sphere\",6371200,0]],PRIMEM[\"Greenwich\",0],UNIT[\"degree\",0.0174532925199433,AUTHORITY[\"EPSG\",\"9122\"]]],PROJECTION[\"Polar_Stereographic\"],PARAMETER[\"latitude_of_origin\",60],PARAMETER[\"central_meridian\",-105],PARAMETER[\"false_easting\",0],PARAMETER[\"false_northing\",0],UNIT[\"metre\",1],AXIS[\"Easting\",SOUTH],AXIS[\"Northing\",SOUTH]]",
+    "n_cells": 178
+  },
+  "attribution": {
+    "name": "Ridge",
+    "q_lag_coef": 0.0014645275052950978
+  }
+}

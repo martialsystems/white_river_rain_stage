@@ -1,0 +1,55 @@
+{
+  "stage": "0",
+  "fixture": true,
+  "question": "Can Stage IV rain on the 1,219 mi\u00b2 Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?",
+  "gage_id": "03351000",
+  "crest_date": "2026-08-15",
+  "crest_stage_ft": 21.18,
+  "published_drainage_mi2": 1219.0,
+  "drainage_mi2": null,
+  "n_days": 1055,
+  "n_cells": 80,
+  "n_train": 363,
+  "n_holdout": 689,
+  "rain_units": "mm",
+  "stage_units": "ft",
+  "q_units": "cfs",
+  "native_rain_units": "mm",
+  "basin_sha": "9b64f286925663f4c017e98728476ea3ff26725da859ee150992d5f0897f0d03",
+  "source": "fixture",
+  "crs": "fixture-grid",
+  "skill": {
+    "persistence": {
+      "rmse_ft": 0.5388187162446819,
+      "mae_ft": 0.39733637623314005
+    },
+    "climatology": {
+      "rmse_ft": 1.052549751383801,
+      "mae_ft": 0.6770235930663868
+    },
+    "baseline": {
+      "rmse_ft": 0.5364094039060954,
+      "mae_ft": 0.41022116073169984
+    },
+    "model_a": {
+      "rmse_ft": 0.3661741127352355,
+      "mae_ft": 0.2873227210065691,
+      "name": "Ridge"
+    }
+  },
+  "august_2026_in_train": false,
+  "random_split": false,
+  "future_rain": false,
+  "p_sfha_feature": false,
+  "p_sfha_label": false,
+  "figures": [
+    "hydrograph.png",
+    "attribution.png"
+  ],
+  "attribution": {
+    "name": "Ridge",
+    "q_lag_coef": 0.001366990703411682,
+    "hotspot_mean_abs_coef": 0.01040858501635354,
+    "other_mean_abs_coef": 0.0020446092121049744
+  }
+}
