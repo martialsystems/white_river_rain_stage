@@ -66,3 +66,5 @@ Do not use stock `/usr/bin/python3 -m pytest`: it has no rasterio. HTTP 404 or a
 | [CHECKLIST.md](CHECKLIST.md) | Operator list |
 | `src/rainstage/` | Basin, Stage IV clip, models A/B, figures, claims |
 | `rainforge/` | GraphForge pin: no `p_sfha`, temporal split, fetch-or-stop, claim bans |
+
+Lanes (maps / White River Q / precip): https://github.com/martialsystems
