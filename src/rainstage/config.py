@@ -17,10 +17,7 @@ HOLDOUT_START = date(2024, 10, 1)
 RAIN_LAGS = (0, 1, 2, 3)
 Q_LAG_DAYS = 1
 MAX_FIGURES = 2
-QUESTION = (
-    "Can Stage IV rain on the 1,219 mi² Nora drainage, plus last-day discharge, "
-    "predict gage height at USGS 03351000?"
-)
+QUESTION = "Does rain on the Nora basin help you guess tomorrow's stage?"
 USER_AGENT = "MartialSystemsResearch/white_river_rain_stage"
 NLDI_BASIN_URL = (
     "https://api.water.usgs.gov/nldi/linked-data/nwissite/USGS-03351000/basin?f=json"

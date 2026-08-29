@@ -1,14 +1,12 @@
 # White River rain-to-stage (Nora)
 
-Can Stage IV rain on the 1,219 mi² Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?
+Does rain on the Nora basin help you guess tomorrow's stage?
 
-On this live sample, with this Ridge: no.
+Most days, no. Yesterday at Nora is still closer (RMSE 1.03 ft). Rain-sum plus yesterday's discharge is 2.58. The 178-pixel Ridge is 3.19 RMSE and 0.84 MAE (the simple rain sum is 0.83 MAE). With 89 summer training days there are not enough events for Stage IV pixels on the 1,219 mi² Nora drainage to beat yesterday at USGS 03351000, and a linear rain sum overshoots the 15 Aug crest.
 
-Persistence wins (RMSE 1.03 ft). Rain-sum plus yesterday's Q is second (2.58). The 178-pixel Ridge is third on RMSE (3.19) and ties the simple rain model on MAE (0.84 vs 0.83). With 89 summer training days there are not enough events for Stage IV pixels to beat "today looks like yesterday," and a linear rain sum overshoots the 15 Aug crest.
+So this is not "rain pixels found the flood." It is "today looks like yesterday, and the Ridge does not beat that."
 
-The fixture beating persistence only shows the synthetic hotspot is recoverable. It does not rescue live skill.
-
-Live negative result is commit `e41fd69`. This tree does not read `p_sfha`.
+Live negative result is commit `e41fd69`. This tree does not read `p_sfha`. The fixture beating persistence only shows the synthetic hotspot is recoverable. It does not rescue live skill. Attribution should not be read as a runoff map.
 
 Sibling HAND paint: https://github.com/martialsystems/white_river_stage_inundation  
 Sibling map-completion: https://github.com/martialsystems/indiana_flood_completion
