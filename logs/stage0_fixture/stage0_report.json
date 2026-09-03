@@ -1,7 +1,7 @@
 {
   "stage": "0",
   "fixture": true,
-  "question": "Can Stage IV rain on the 1,219 mi\u00b2 Nora drainage, plus last-day discharge, predict gage height at USGS 03351000?",
+  "question": "Does rain on the Nora basin help you guess tomorrow's stage?",
   "gage_id": "03351000",
   "crest_date": "2026-08-15",
   "crest_stage_ft": 21.18,
