@@ -8,8 +8,7 @@ So this is not "rain pixels found the flood." It is "today looks like yesterday,
 
 Live negative result is commit `e41fd69`. This tree does not read `p_sfha`. The fixture beating persistence only shows the synthetic hotspot is recoverable. It does not rescue live skill. Attribution should not be read as a runoff map.
 
-Sibling HAND paint: [![white_river_stage_inundation](https://img.shields.io/badge/white__river__stage__inundation-2e7d32?style=for-the-badge)](https://github.com/martialsystems/white_river_stage_inundation)
-Sibling map-completion: [![indiana_flood_completion](https://img.shields.io/badge/indiana__flood__completion-2e7d32?style=for-the-badge)](https://github.com/martialsystems/indiana_flood_completion)
+[![Nora wet cells at two stages](https://img.shields.io/badge/Nora_wet_cells_at_two_stages-2e7d32?style=for-the-badge)](https://github.com/martialsystems/white_river_stage_inundation) [![Upper White floodplain completion](https://img.shields.io/badge/Upper_White_floodplain_completion-2e7d32?style=for-the-badge)](https://github.com/martialsystems/indiana_flood_completion)
 
 ![Figure 1. Holdout hydrograph](logs/nora_live/hydrograph.png)
 
