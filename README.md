@@ -8,8 +8,8 @@ So this is not "rain pixels found the flood." It is "today looks like yesterday,
 
 Live negative result is commit `e41fd69`. This tree does not read `p_sfha`. The fixture beating persistence only shows the synthetic hotspot is recoverable. It does not rescue live skill. Attribution should not be read as a runoff map.
 
-Sibling HAND paint: https://github.com/martialsystems/white_river_stage_inundation  
-Sibling map-completion: https://github.com/martialsystems/indiana_flood_completion
+Sibling HAND paint: [![white_river_stage_inundation](https://img.shields.io/badge/white__river__stage__inundation-2e7d32?style=for-the-badge)](https://github.com/martialsystems/white_river_stage_inundation)
+Sibling map-completion: [![indiana_flood_completion](https://img.shields.io/badge/indiana__flood__completion-2e7d32?style=for-the-badge)](https://github.com/martialsystems/indiana_flood_completion)
 
 ![Figure 1. Holdout hydrograph](logs/nora_live/hydrograph.png)
 
@@ -67,4 +67,4 @@ Do not use stock `/usr/bin/python3 -m pytest`: it has no rasterio. HTTP 404 or a
 | `src/rainstage/` | Basin, Stage IV clip, models A/B, figures, claims |
 | `rainforge/` | GraphForge pin: no `p_sfha`, temporal split, fetch-or-stop, claim bans |
 
-Research index: https://gist.github.com/martialsystems/66b896b0a4a0b8cba2b478aef64312f3
+[![Open the research console](https://img.shields.io/badge/Open_the_research_console-2e7d32?style=for-the-badge)](https://martialsystems.github.io/indiana_wx_pages/)
